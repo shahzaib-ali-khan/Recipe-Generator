@@ -1,8 +1,10 @@
 ### Recipe API ###
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
+from settings import Settings, get_settings
 from src.integartions.factory import LLMFactory
+from src.routers.schema import RecipeSchema
 
 router = APIRouter(
     prefix="/recipes",
@@ -14,7 +16,12 @@ router = APIRouter(
 )
 
 
-@router.get("/")
-async def recipes(selected_model: str, ingrediants_as_text: str) -> dict:
-    llm = LLMFactory.create_llm(selected_model)
-    return {"llm": selected_model, "response": llm.chat(ingrediants_as_text)}
+@router.post("/")
+async def recipes(
+    recipe: RecipeSchema,
+    settings: Settings = Depends(get_settings),
+) -> dict:
+    llm_factory = LLMFactory(settings)
+    llm = llm_factory.create_llm(recipe.model)
+
+    return {"llm": recipe.model, "result": llm.chat(recipe.ingredients_as_text)}
