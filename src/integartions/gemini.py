@@ -27,4 +27,4 @@ class GeminiClient(LLMClient):
         return response.text
 
     def chat(self, prompt: str) -> str:
-        return self.text_response(prompt)
+        return self.text_response(super().modify_prompt(prompt))

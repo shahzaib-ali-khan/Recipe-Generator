@@ -2,9 +2,9 @@
 
 from fastapi import APIRouter, Depends
 
-from settings import Settings, get_settings
 from src.integartions.factory import LLMFactory
 from src.routers.schema import RecipeSchema
+from src.settings import Settings, get_settings
 
 router = APIRouter(
     prefix="/recipes",

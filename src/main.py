@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from routers import recipe, supported_llm
+from src.routers import recipe, supported_llm
 
 app = FastAPI()
 

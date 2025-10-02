@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter, Depends
 
-from settings import Settings, get_settings
+from src.settings import Settings, get_settings
 
 router = APIRouter(
     prefix="/supported_llms",

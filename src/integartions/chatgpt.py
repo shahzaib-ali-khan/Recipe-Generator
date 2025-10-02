@@ -38,4 +38,4 @@ class ChatGPTClient(LLMClient):
         return self.filter_response_object(response)
 
     def chat(self, prompt: str) -> str:
-        return self.text_response(prompt)
+        return self.text_response(super().modify_prompt(prompt))
