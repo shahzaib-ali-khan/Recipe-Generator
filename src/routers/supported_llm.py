@@ -15,4 +15,4 @@ router = APIRouter(
 
 @router.get("/")
 async def supported_llms(settings: Settings = Depends(get_settings)):
-    return settings.supported_llms
+    return {"result": settings.supported_llms}

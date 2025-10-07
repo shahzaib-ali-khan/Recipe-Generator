@@ -5,5 +5,5 @@ from src.routers import recipe, supported_llm
 app = FastAPI()
 
 
-app.include_router(recipe.router)
-app.include_router(supported_llm.router)
+app.include_router(recipe.router, prefix="/api/v1")
+app.include_router(supported_llm.router, prefix="/api/v1")
